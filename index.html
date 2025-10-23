@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Smart Pet Feeder — Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app" class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">🐾</div>
+        <div>
+          <div class="title">Smart Pet Feeder</div>
+          <div class="subtitle">Smart Feeding Solutions</div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="themeToggle" class="icon-btn" title="Toggle theme">🌙</button>
+      </div>
+    </header>
+
+    <nav class="nav">
+      <button class="nav-link active" data-target="dashboard">Dashboard</button>
+      <button class="nav-link" data-target="camera">Camera View</button>
+      <button class="nav-link" data-target="history">Feeding History</button>
+      <button class="nav-link" data-target="settings">Settings</button>
+      <button class="nav-link" data-target="about">About</button>
+    </nav>
+
+    <main class="main">
+      <!-- DASHBOARD -->
+      <section id="dashboard" class="page">
+        <div class="grid">
+          <div class="card camera-card">
+            <h3>Live Camera</h3>
+            <div class="camera-placeholder">
+              <img id="cameraImg" src="https://via.placeholder.com/800x450?text=Camera+Stream+Placeholder" alt="Camera stream">
+            </div>
+            <small class="muted">Replace the image src with your ESP32-CAM stream URL later.</small>
+          </div>
+
+          <div class="card control-card">
+            <h3>Manual Control</h3>
+            <p>Status: <strong id="statusText">Idle</strong></p>
+            <div class="btn-row">
+              <button id="feedNowBtn" class="primary">Feed Now</button>
+              <button id="simulateBtn" class="secondary">Simulate Feed (local)</button>
+            </div>
+
+            <div class="info">
+              <p>Last fed: <span id="lastFed">—</span></p>
+              <p>Portion: <span id="portionLabel">1 Cup</span></p>
+            </div>
+          </div>
+
+          <div class="card stats-card">
+            <h3>Quick Stats</h3>
+            <div class="stat-grid">
+              <div class="stat">
+                <div class="num" id="totalFeeds">0</div>
+                <div class="label">Total Feeds</div>
+              </div>
+              <div class="stat">
+                <div class="num" id="todayFeeds">0</div>
+                <div class="label">Today</div>
+              </div>
+              <div class="stat">
+                <div class="num" id="uptime">—</div>
+                <div class="label">Device Uptime</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CAMERA -->
+      <section id="camera" class="page hidden">
+        <div class="card full-card">
+          <h3>Camera Stream</h3>
+          <div class="camera-stream">
+            <iframe id="cameraFrame" src="about:blank" title="Camera stream" sandbox></iframe>
+            <div class="camera-actions">
+              <input id="cameraUrl" type="text" placeholder="Paste your ESP32 stream URL here (http://192.168.x.x:81/stream)" />
+              <button id="loadCamera" class="primary">Load Stream</button>
+            </div>
+            <small class="muted">If you don't have stream yet, use the placeholder on Dashboard.</small>
+          </div>
+        </div>
+      </section>
+
+      <!-- HISTORY -->
+      <section id="history" class="page hidden">
+        <div class="card full-card">
+          <h3>Feeding History</h3>
+          <div class="history-actions">
+            <button id="exportCsv" class="secondary">Export CSV</button>
+            <button id="clearHistory" class="danger">Clear Local History</button>
+          </div>
+
+          <div class="table-wrap">
+            <table id="historyTable">
+              <thead>
+                <tr><th>#</th><th>Date</th><th>Time</th><th>Portion</th><th>Triggered</th></tr>
+              </thead>
+              <tbody>
+                <!-- rows inserted by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SETTINGS -->
+      <section id="settings" class="page hidden">
+        <div class="card full-card">
+          <h3>Settings</h3>
+          <form id="settingsForm" class="form-grid">
+            <label>Feeding Portion
+              <select id="portionSelect">
+                <option value="1/2 Cup">1/2 Cup</option>
+                <option value="1 Cup" selected>1 Cup</option>
+                <option value="2 Cups">2 Cups</option>
+              </select>
+            </label>
+
+            <label>Auto-Feed Schedule (simple)
+              <input type="time" id="scheduleTime" />
+            </label>
+
+            <label>Number of Servings
+              <input type="number" id="servings" min="1" max="10" value="1" />
+            </label>
+
+            <div class="form-actions">
+              <button id="saveSettings" type="button" class="primary">Save Settings</button>
+              <button id="resetSettings" type="button" class="secondary">Reset</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="page hidden">
+        <div class="card full-card">
+          <h3>About Smart Pet Feeder</h3>
+          <p class="muted">Smart Feeding Solutions — Capstone Project</p>
+          <p>This demo website is a front-end prototype for the Smart Pet Feeder. It includes UI for live camera, manual control, feeding history, and settings. Connect the backend (Supabase) and ESP32 later to make it fully functional.</p>
+
+          <h4>Features included</h4>
+          <ul>
+            <li>Responsive, modern minimalist UI (SPA)</li>
+            <li>Mock "Feed Now" behavior with local history</li>
+            <li>Camera URL loader and placeholder</li>
+            <li>Export history to CSV (client-side)</li>
+          </ul>
+
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>© Smart Feeding Solutions — Prototype</div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
