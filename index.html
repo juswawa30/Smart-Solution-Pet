@@ -80,6 +80,10 @@
   <div class="card full-card">
     <h3>Camera View</h3>
     
+    <section id="camera" class="page hidden">
+  <div class="card full-card">
+    <h3>Camera View</h3>
+    
     <!-- Stream Display -->
     <div class="camera-wrapper">
       <iframe 
@@ -91,6 +95,17 @@
         allowfullscreen>
       </iframe>
     </div>
+    
+    <!-- URL Loader -->
+    <div class="camera-loader">
+      <input id="cameraUrl" type="text" placeholder="Paste your ESP32 stream URL here" />
+      <button id="loadCamera" class="primary">Load Stream</button>
+    </div>
+    
+    <small class="muted">If you don’t have a stream yet, use the placeholder on Dashboard.</small>
+  </div>
+</section>
+
     
     <!-- URL Loader -->
     <div class="camera-loader">
@@ -188,5 +203,6 @@
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
