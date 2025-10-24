@@ -76,17 +76,31 @@
         </div>
       </section>
 
-      <!-- CAMERA -->
-      <div id="camera-view" class="tab-content">
-    <h2>Camera View</h2>
-    <iframe 
+    <section id="camera" class="page hidden">
+  <div class="card full-card">
+    <h3>Camera View</h3>
+    
+    <!-- Stream Display -->
+    <div class="camera-wrapper">
+      <iframe 
+        id="cameraFrame"
         src="http://192.168.1.37/stream" 
         width="640" 
         height="480" 
         style="border:1px solid #ccc;"
         allowfullscreen>
-    </iframe>
-</div>
+      </iframe>
+    </div>
+    
+    <!-- URL Loader -->
+    <div class="camera-loader">
+      <input id="cameraUrl" type="text" placeholder="Paste your ESP32 stream URL here" />
+      <button id="loadCamera" class="primary">Load Stream</button>
+    </div>
+    
+    <small class="muted">If you don’t have a stream yet, use the placeholder on Dashboard.</small>
+  </div>
+</section>
 
               <input id="cameraUrl" type="text" placeholder="Paste your ESP32 stream URL here (http://192.168.x.x:81/stream)" />
               <button id="loadCamera" class="primary">Load Stream</button>
@@ -174,4 +188,5 @@
   <script src="script.js"></script>
 </body>
 </html>
+
 
