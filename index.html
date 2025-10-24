@@ -77,12 +77,17 @@
       </section>
 
       <!-- CAMERA -->
-      <section id="camera" class="page hidden">
-        <div class="card full-card">
-          <h3>Camera Stream</h3>
-          <div class="camera-stream">
-            <iframe id="cameraFrame" src="about:blank" title="Camera stream" sandbox></iframe>
-            <div class="camera-actions">
+      <div id="camera-view" class="tab-content">
+    <h2>Camera View</h2>
+    <iframe 
+        src="http://192.168.1.37/stream" 
+        width="640" 
+        height="480" 
+        style="border:1px solid #ccc;"
+        allowfullscreen>
+    </iframe>
+</div>
+
               <input id="cameraUrl" type="text" placeholder="Paste your ESP32 stream URL here (http://192.168.x.x:81/stream)" />
               <button id="loadCamera" class="primary">Load Stream</button>
             </div>
@@ -169,3 +174,4 @@
   <script src="script.js"></script>
 </body>
 </html>
+
